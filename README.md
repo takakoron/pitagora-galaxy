@@ -2,7 +2,7 @@
 
 Tool  
 (1) import_mpileup  
-     import_mpileupfile.xml  
+<p style="text-indent:1em">import_mpileupfile.xml</p>   
      data_source.py  
 (2) detect_snps  
      Detect_SNPs_docker.xml  
