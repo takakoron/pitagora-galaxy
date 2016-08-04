@@ -9,6 +9,7 @@ Tool
 (3) detect_indels  
      Detect_Indels_docker.xml  
 (4) merge_snpsindels_files  
+     Merge_SNPsInDels_files_docker.xml
 (5) distribution_of_dna_polymorphism  
      Visualize_distrubution_of_polymorphism_docker.xml  
      Visualize_Distrubution_of_polymorphism.loc.sample (galaxyへのダウンロード不要)  
