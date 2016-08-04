@@ -1,9 +1,9 @@
 # pitagora-galaxy
 
 Tool  
-- import_mpileup  
+(1) import_mpileup  
     - import_mpileupfile.xml   
-     data_source.py  
+    -data_source.py  
 (2) detect_snps  
      Detect_SNPs_docker.xml  
 (3) detect_indels  
