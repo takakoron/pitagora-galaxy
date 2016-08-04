@@ -1,0 +1,41 @@
+<tool id="Merge_DNA_polymorphism_files_docker" name="Merge_SNPs_/_InDels_data_files">
+        <description> Merge SNPs / InDels data files </description>
+	<requirements>
+	    <container type="docker">takakoron/merge_polymorphism_files</container>
+	</requirements>
+
+	<description></description>
+	<command interpreter="perl">
+
+		/usr/src/myapp/merge_polymorphism_files.pl
+		$input1
+		$input2
+		$output1
+
+	</command>
+
+	<inputs>
+		<param name="input1" type="data"  format="vcf"
+			label="Select SNPs / InDels data file (format : samtools pileup/mpileup)" />
+		<param name="input2" type="data"  format="vcf"
+			label="Select SNPs / InDels data file (format : samtools pileup/mpileup)" />
+	</inputs>
+
+	<outputs>
+		<data name="output1" type="data"  format="vcf"/>
+	</outputs>
+
+<!---
+   <help>
+
+.. class:: infomark
+**About data**
+
+Distribution of chromosome is appeared in order of genome file.
+
+   </help>
+-->
+
+</tool>
+
+

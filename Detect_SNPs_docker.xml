@@ -1,0 +1,76 @@
+<tool id="Detect_SNPs_docker" name="Detect_SNPs">
+        <description> Detect SNPs  </description>
+	<requirements>
+	    <container type="docker">takakoron/detect_snp</container>
+	</requirements>
+	<command interpreter="perl">
+		/usr/src/myapp/kick_detect_snps.pl  $how.how_specify
+
+		#if $how.how_specify == "pileup":
+			$how.pileup
+			$how.consensus
+			$how.snp
+			$how.map
+			$how.coverage
+			$how.het_hom_both
+			$output1
+		#else:
+			$how.mpileup
+			$how.dp
+			$how.mq
+			$how.het_hom_both
+			$how.gq
+			$output1
+		#end if
+	</command>
+
+	<inputs>
+		<conditional name="how">
+			<param name="how_specify" type="select" label="Select pileup or mpileup " >
+				<option value="mpileup">mpileup</option>
+				<option value="pileup">pileup</option>
+			</param>
+			<when value="pileup">
+				<param name="pileup" type="data" label="Select DNA polymorphism file(format : samtools pileup)" />
+				<param name="consensus"   area="true"  type="integer" size="1x10" value="0"  label="Consensus quality threshold in pileup file (default: 0)" />
+				<param name="snp"   area="true"  type="integer" size="1x10" value="20"  label="SNP quality threshold in pileup file (default: 20)" />
+				<param name="map"   area="true"  type="integer" size="1x10" value="0"  label="Maximum mapping quality threshold in pileup file (default: 0)" />
+				<param name="coverage"   area="true"  type="integer" size="1x10" value="8"  label="read coverage threshold in pileup file (default: 8)" />
+                                <param name="het_hom_both" type="select" label="Select hets, homs or both (default: both)" >
+                                        <option value="both">both</option>
+                                        <option value="homs">homs</option>
+                                        <option value="hets">hets</option>
+                                </param>
+			</when>
+			<when value="mpileup">
+				<param name="mpileup" type="data"  label="Select DNA polymorphism file(format : samtools mpileup)" />
+				<param name="dp"   area="true"  type="integer" size="1x10" value="0"  label="(DP) Raw read depth threshold in mpileup file (default: 0)" />
+				<param name="mq"   area="true"  type="integer" size="1x10" value="0"  label="(MQ) Root-mean-square mapping quality threshold in mpileup file (default: 0)" />
+				<param name="het_hom_both" type="select" label="(GT) Select hets, homs or both (default: both)" >
+					<option value="both">both</option>
+					<option value="homs">homs</option>
+					<option value="hets">hets</option>
+				</param>
+				<param name="gq"   area="true"  type="integer" size="1x10" value="0"  label="(GQ) Genotype quality threshold in mpileup file (default: 0)" />
+			</when>
+		</conditional>
+	</inputs>
+
+	<outputs>
+		<data name="output1" label="SNPs data" type="data"  format="vcf"/>
+	</outputs>
+
+<!---
+   <help>
+
+.. class:: infomark
+**About data**
+
+Distribution of chromosome is appeared in order of genome file.
+
+   </help>
+-->
+
+</tool>
+
+

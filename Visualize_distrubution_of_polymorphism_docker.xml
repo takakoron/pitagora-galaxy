@@ -1,0 +1,43 @@
+<tool id="Visualize_distrubution_of_polymorphism_docker" name="Visualize distribution of DNA polymorphism">
+	<requirements>
+	    <container type="docker">takakoron/distribution_of_dna_polymorphism</container>
+	</requirements>
+	<command interpreter="perl">
+
+		/usr/src/myapp/kick_distribution_polymorphism.pl
+		
+		'$annotation_data'
+		'$polymorphism'
+		'$output1'
+
+	</command>
+
+	<inputs>
+		<!--- input annotation data -->
+		<param name="annotation_data" type="select" label="Select an annotation data" help="If your annotation of interest is not listed, contact the P-GALAXY team">">
+			<options from_file="Visualize_Distrubution_of_polymorphism.loc">
+				<column name="value" index="1" />
+				<column name="name" index="0" />
+			</options>
+		</param>
+		<param name="polymorphism" type="data" label="Select DNA polymorphism file(format : samtools pileup or mpileup)" />
+	</inputs>
+
+	<outputs>
+		<data name="output1" format="html" />
+	</outputs>
+
+<!---
+   <help>
+
+.. class:: infomark
+**About data** 
+
+Distribution of chromosome is appeared in order of genome file.
+
+   </help>
+-->
+
+</tool>
+
+

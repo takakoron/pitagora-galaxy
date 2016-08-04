@@ -1,0 +1,23 @@
+<tool id="import_mpileupfile" name="import mpileupfile" tool_type="data_source">
+	<description>Import from DDBJ Pipeline</description>
+    <command interpreter="python">data_source.py $output $__app__.config.output_size_limit</command>
+    <inputs action="http://p.ddbj.nig.ac.jp/pipeline/GalaxyListUserMPileup.do" check_values="false" method="get">
+         <display>params</display>
+         <param name="GALAXY_URL" type="baseurl" value="/tool_runner" />
+         <param name="tool_id" type="hidden" value="import_mpileupfile" />
+    </inputs>
+    <request_param_translation>
+       <request_param galaxy_name="URL_method" remote_name="URL_method" missing="post" />
+    </request_param_translation>
+    <uihints minwidth="400"/>
+	<outputs>
+    	<data name="output" format="vcf" />
+	</outputs>
+    <options sanitize="False" refresh="True"/>
+	<help>
+**What it does**
+	P-Galaxy workflow use the alignment files(sam format) by "DDBJ Read Annotation Pipeline".
+	This program import the alignment files by "DDBJ Read Annotation Pipeline" to the history of P-Galaxy.
+	The imported data is used to analyze.
+	</help>
+</tool>
